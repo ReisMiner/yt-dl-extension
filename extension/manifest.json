@@ -1,20 +1,27 @@
 {
-
   "manifest_version": 2,
   "name": "yt-dl-extension",
   "version": "1.0",
-
   "description": "Frontend for https://github.com/ReisMiner/yt-dl-service",
-
   "icons": {
     "96": "assets/icon.png"
   },
-
   "content_scripts": [
     {
-      "matches": ["*://www.youtube.com/watch?*"],
-      "js": ["yt-dl-extension.js"]
+      "matches": [
+        "*://www.youtube.com/watch?*"
+      ],
+      "js": [
+        "yt-integration.js"
+      ]
     }
-  ]
-
+  ],
+  "background": {
+    "scripts": [
+      "extension-click.js"
+    ]
+  },
+  "browser_action": {
+    "default_icon": "assets/icon.png"
+  }
 }
