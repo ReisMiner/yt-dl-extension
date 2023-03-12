@@ -1,11 +1,11 @@
 <script>
     import {onMount} from "svelte";
+    import {API_URL} from "./config.js";
 
-    const API_URL = "http://localhost:8080/"
     let videos = []
 
     onMount(async () => {
-        videos = await (await fetch("http://localhost:8080/video/all", {method: "GET"})).json()
+        videos = await (await fetch(API_URL + "video/all", {method: "GET"})).json()
     });
 
 </script>
@@ -21,61 +21,6 @@
                 <button onclick="deleteVid(vid.id)">delete</button>
             </div>
         </div>
-        <div class="card">
-            <h2>{vid.title}</h2>
-            <h3>{vid.channel}</h3>
-            <h3>Duration: {vid.length}</h3>
-            <div>
-                <a href="{API_URL}video/download?id={vid.id}" download>download</a>
-                <button onclick="deleteVid(vid.id)">delete</button>
-            </div>
-        </div>
-        <div class="card">
-            <h2>{vid.title}</h2>
-            <h3>{vid.channel}</h3>
-            <h3>Duration: {vid.length}</h3>
-            <div>
-                <a href="{API_URL}video/download?id={vid.id}" download>download</a>
-                <button onclick="deleteVid(vid.id)">delete</button>
-            </div>
-        </div>
-        <div class="card">
-            <h2>{vid.title}</h2>
-            <h3>{vid.channel}</h3>
-            <h3>Duration: {vid.length}</h3>
-            <div>
-                <a href="{API_URL}video/download?id={vid.id}" download>download</a>
-                <button onclick="deleteVid(vid.id)">delete</button>
-            </div>
-        </div>
-        <div class="card">
-            <h2>{vid.title}</h2>
-            <h3>{vid.channel}</h3>
-            <h3>Duration: {vid.length}</h3>
-            <div>
-                <a href="{API_URL}video/download?id={vid.id}" download>download</a>
-                <button onclick="deleteVid(vid.id)">delete</button>
-            </div>
-        </div>
-        <div class="card">
-            <h2>{vid.title}</h2>
-            <h3>{vid.channel}</h3>
-            <h3>Duration: {vid.length}</h3>
-            <div>
-                <a href="{API_URL}video/download?id={vid.id}" download>download</a>
-                <button onclick="deleteVid(vid.id)">delete</button>
-            </div>
-        </div>
-        <div class="card">
-            <h2>{vid.title}</h2>
-            <h3>{vid.channel}</h3>
-            <h3>Duration: {vid.length}</h3>
-            <div>
-                <a href="{API_URL}video/download?id={vid.id}" download>download</a>
-                <button onclick="deleteVid(vid.id)">delete</button>
-            </div>
-        </div>
-
     {/each}
 </div>
 

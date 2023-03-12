@@ -1,3 +1,5 @@
+import {API_URL, buttonStyle} from "./config.js";
+
 let loadTimer = setInterval(waitForLoad, 100);
 
 
@@ -27,10 +29,21 @@ function isVideoLoaded() {
     );
 }
 
+function createElementFromHTML(htmlString) {
+    let div = document.createElement('div');
+    div.innerHTML = htmlString.trim();
+
+    // Change this to div.childNodes to support multiple top-level nodes.
+    return div.children[0];
+}
+
 function waitForLoad() {
     if (isVideoLoaded()) {
         clearInterval(loadTimer);
-        let title = document.querySelectorAll("h1.ytd-watch-metadata")[0];
-        title.style.color="red";
+        let dlVid = createElementFromHTML("<button style='" + buttonStyle + "' onclick='let API_URL=\""+API_URL+"\";"+'let header = new Headers();header.append("Content-Type", "application/json");fetch(API_URL+"video/queue", {method: "POST",headers: header,body: "{\\"url\\":\\"" + window.location.href + "\\",\\"audioOnly\\":false}"})'+"'>Download Video</button>")
+        let dlVidAudio = createElementFromHTML("<button style='" + buttonStyle + "' onclick='let API_URL=\""+API_URL+"\";"+'let header = new Headers();header.append("Content-Type", "application/json");fetch(API_URL+"video/queue", {method: "POST",headers: header,body: "{\\"url\\":\\"" + window.location.href + "\\",\\"audioOnly\\":true}"})'+"'>Download Audio</button>")
+        let descriptionTitle = document.querySelectorAll("yt-formatted-string.ytd-watch-metadata:nth-child(1)")[0];
+        descriptionTitle.insertAdjacentElement("beforeend", dlVid)
+        descriptionTitle.insertAdjacentElement("beforeend", dlVidAudio)
     }
 }
