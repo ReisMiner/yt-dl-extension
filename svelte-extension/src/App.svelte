@@ -3,13 +3,29 @@
     import {API_URL} from "./config.js";
 
     let videos = []
+    let inputUrl = ""
 
     onMount(async () => {
-        videos = await (await fetch(API_URL + "video/all", {method: "GET"})).json()
+
+        browser.storage.sync.get(['api_url'], async function(result) {
+            if(result.api_url !== undefined || result.api_url !== null || result.api_url !== ""){
+                inputUrl = result.api_url;
+                videos = await (await fetch(result.api_url + "video/all", {method: "GET"})).json()
+            }
+        });
+
     });
 
+    function save() {
+        browser.storage.sync.set({api_url: inputUrl});
+        window.location.reload();
+    }
 </script>
-<h1>Video Gallery</h1>
+<header>
+    <h1>Video Gallery</h1>
+    <input type="text" placeholder="API URL. example: http://localhost:18080/" bind:value={inputUrl}>
+    <button on:click={save}>Save</button>
+</header>
 <div class="gallery">
     {#each videos as vid}
         <div class="card">
@@ -18,7 +34,7 @@
             <h3>Duration: {vid.length}</h3>
             <div>
                 <a href="{API_URL}video/download?id={vid.id}" download>download</a>
-                <button onclick="deleteVid(vid.id)">delete</button>
+                <button>delete</button>
             </div>
         </div>
     {/each}
@@ -26,8 +42,23 @@
 
 <!--    color palette: https://colorkit.co/palette/252525-494d58-70838a-f35e3e-ffffff/-->
 <style>
-    h1 {
+    header {
+        display: flex;
+        flex-direction: row;
         margin-top: 20px;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+    }
+
+    header input {
+        height: 50px;
+        width: 400px;
+        margin-left: auto;
+    }
+
+    header button {
+        height: 50px;
     }
 
     .gallery {
@@ -55,7 +86,7 @@
         align-self: end;
     }
 
-    h2,h3{
+    h2, h3 {
         margin: 0;
         padding: 0;
     }
