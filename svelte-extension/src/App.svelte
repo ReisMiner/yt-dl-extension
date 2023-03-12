@@ -35,8 +35,8 @@
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
-        gap: 20px;
         padding: 20px;
+        gap: 20px;
     }
 
     .card {
@@ -46,12 +46,17 @@
         box-shadow: 0 5px 15px rgba(0, 0, 0, 0.20);
         padding: 10px;
         display: flex;
-        gap: 10px;
         flex-direction: column;
+        gap: 10px;
     }
 
     .card div {
         margin-top: auto;
         align-self: end;
+    }
+
+    h2,h3{
+        margin: 0;
+        padding: 0;
     }
 </style>
