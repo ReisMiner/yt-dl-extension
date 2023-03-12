@@ -1,6 +1,5 @@
 <script>
     import {onMount} from "svelte";
-    import {API_URL} from "./config.js";
 
     let videos = []
     let inputUrl = ""
@@ -33,7 +32,7 @@
             <h3>{vid.channel}</h3>
             <h3>Duration: {vid.length}</h3>
             <div>
-                <a href="{API_URL}video/download?id={vid.id}" download>download</a>
+                <a href="{inputUrl}video/download?id={vid.id}" download>download</a>
                 <button>delete</button>
             </div>
         </div>

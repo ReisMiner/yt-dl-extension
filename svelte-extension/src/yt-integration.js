@@ -1,6 +1,12 @@
-import {API_URL, buttonStyle} from "./config.js";
+import {buttonStyle} from "./config.js";
+
+let apiUrl = "";
+browser.storage.sync.get(['api_url'], function (result) {
+    apiUrl = result.api_url;
+});
 
 let loadTimer = setInterval(waitForLoad, 100);
+
 
 
 // from return-youtube-dislike
@@ -40,8 +46,9 @@ function createElementFromHTML(htmlString) {
 function waitForLoad() {
     if (isVideoLoaded()) {
         clearInterval(loadTimer);
-        let dlVid = createElementFromHTML("<button style='" + buttonStyle + "' onclick='let API_URL=\""+API_URL+"\";"+'let header = new Headers();header.append("Content-Type", "application/json");fetch(API_URL+"video/queue", {method: "POST",headers: header,body: "{\\"url\\":\\"" + window.location.href + "\\",\\"audioOnly\\":false}"})'+"'>Download Video</button>")
-        let dlVidAudio = createElementFromHTML("<button style='" + buttonStyle + "' onclick='let API_URL=\""+API_URL+"\";"+'let header = new Headers();header.append("Content-Type", "application/json");fetch(API_URL+"video/queue", {method: "POST",headers: header,body: "{\\"url\\":\\"" + window.location.href + "\\",\\"audioOnly\\":true}"})'+"'>Download Audio</button>")
+        console.log("susssy baka: " + apiUrl)
+        let dlVid = createElementFromHTML("<button style='" + buttonStyle + "' onclick='let API_URL=\"" + apiUrl + "\";" + 'let header = new Headers();header.append("Content-Type", "application/json");fetch(API_URL+"video/queue", {method: "POST",headers: header,body: "{\\"url\\":\\"" + window.location.href + "\\",\\"audioOnly\\":false}"})' + "'>Download Video</button>")
+        let dlVidAudio = createElementFromHTML("<button style='" + buttonStyle + "' onclick='let API_URL=\"" + apiUrl + "\";" + 'let header = new Headers();header.append("Content-Type", "application/json");fetch(API_URL+"video/queue", {method: "POST",headers: header,body: "{\\"url\\":\\"" + window.location.href + "\\",\\"audioOnly\\":true}"})' + "'>Download Audio</button>")
         let descriptionTitle = document.querySelectorAll("yt-formatted-string.ytd-watch-metadata:nth-child(1)")[0];
         descriptionTitle.insertAdjacentElement("beforeend", dlVid)
         descriptionTitle.insertAdjacentElement("beforeend", dlVidAudio)
