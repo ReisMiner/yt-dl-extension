@@ -29,7 +29,8 @@
   ],
   "browser_specific_settings": {
     "gecko": {
-      "id": "yt-dl-extension@ramon.cc"
+      "id": "yt-dl-extension@ramon.cc",
+      "update_url": "https://github.com/ReisMiner/yt-dl-extension/blob/master/update-manifest.json"
     }
   }
 }
