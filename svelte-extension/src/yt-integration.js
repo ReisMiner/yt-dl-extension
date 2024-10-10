@@ -1,7 +1,7 @@
 import {buttonStyle} from "./config.js";
 
 let apiUrl = "";
-browser.storage.sync.get(['api_url'], function (result) {
+browser.storage.local.get(['api_url'], function (result) {
     apiUrl = result.api_url;
 });
 

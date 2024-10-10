@@ -5,8 +5,7 @@
     let inputUrl = ""
 
     onMount(async () => {
-        let x = await fetch("video/all", {method: "GET"})
-        browser.storage.sync.get(['api_url'], async function(result) {
+        browser.storage.local.get(['api_url'], async function(result) {
             if(result.api_url !== undefined || result.api_url !== null || result.api_url !== ""){
                 inputUrl = result.api_url;
                 videos = await (await fetch(result.api_url + "video/all", {method: "GET"})).json()
@@ -16,7 +15,7 @@
     });
 
     function save() {
-        browser.storage.sync.set({api_url: inputUrl});
+        browser.storage.local.set({api_url: inputUrl});
         window.location.reload();
     }
 </script>
