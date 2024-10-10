@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "yt-dl-extension",
-  "version": "1.0",
+  "version": "1.1",
   "description": "Frontend for https://github.com/ReisMiner/yt-dl-service",
   "icons": {
     "96": "icon.png"
@@ -30,7 +30,7 @@
   "browser_specific_settings": {
     "gecko": {
       "id": "yt-dl-extension@ramon.cc",
-      "update_url": "https://github.com/ReisMiner/yt-dl-extension/blob/master/update-manifest.json"
+      "update_url": "https://raw.githubusercontent.com/ReisMiner/yt-dl-extension/master/update-manifest.json"
     }
   }
 }

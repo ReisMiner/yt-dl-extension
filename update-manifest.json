@@ -5,6 +5,10 @@
         {
           "version": "1.0",
           "update_link": "https://github.com/ReisMiner/yt-dl-extension/releases/download/1.0/public.zip"
+        },
+        {
+          "version": "1.1",
+          "update_link": "https://github.com/ReisMiner/yt-dl-extension/releases/download/1.1/public.zip"
         }
       ]
     }

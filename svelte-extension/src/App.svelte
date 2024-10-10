@@ -5,7 +5,7 @@
     let inputUrl = ""
 
     onMount(async () => {
-
+        let x = await fetch("video/all", {method: "GET"})
         browser.storage.sync.get(['api_url'], async function(result) {
             if(result.api_url !== undefined || result.api_url !== null || result.api_url !== ""){
                 inputUrl = result.api_url;
